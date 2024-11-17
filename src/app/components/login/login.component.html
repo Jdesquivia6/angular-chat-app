@@ -1,0 +1,37 @@
+<div class="login-container">
+  <div class="chat_window">
+    <div class="top_menu">
+      <div class="title">Login</div>
+    </div>
+
+    <div class="login-form">
+      <div class="input-group">
+        <input
+          type="text"
+          class="login-input"
+          [(ngModel)]="username"
+          placeholder="Username"
+        />
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          class="login-input"
+          [(ngModel)]="password"
+          placeholder="Password"
+        />
+      </div>
+
+      <div class="error-message" *ngIf="loginError">
+        {{ loginError }}
+      </div>
+
+      <button class="login-button" (click)="login()">Login</button>
+    </div>
+
+    <div class="register-btn-container">
+      <button (click)="goToRegister()" class="register-btn">Registrarse</button>
+    </div>
+  </div>
+</div>

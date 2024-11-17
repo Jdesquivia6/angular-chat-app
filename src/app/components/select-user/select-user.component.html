@@ -1,0 +1,46 @@
+<div class="select-user-container">
+  <div class="card">
+    <h2>Iniciar Chat</h2>
+
+    <!-- Mostrar lista de usuarios -->
+    <div *ngIf="users.length > 0; else noUsers">
+      <h3>Selecciona un Usuario</h3>
+      <ul class="user-list">
+        <li
+          *ngFor="let user of users"
+          (click)="selectUser(user)"
+          class="user-item"
+          [class.selected]="user === selectedUser"
+        >
+          <span>{{ user.name }} (ID: {{ user.id }})</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Mensaje si no hay usuarios -->
+    <ng-template #noUsers>
+      <p>No hay usuarios disponibles.</p>
+    </ng-template>
+
+    <!-- Formulario para iniciar chat con el usuario seleccionado -->
+    <form *ngIf="selectedUser" (submit)="startChat()">
+      <label for="otherUserId">ID del usuario:</label>
+      <input
+        id="otherUserId"
+        type="text"
+        [(ngModel)]="otherUserId"
+        placeholder="ID del usuario seleccionado"
+        name="otherUserId"
+        [value]="selectedUser?.id"
+        required
+        readonly
+      />
+      <button type="submit">Iniciar Chat</button>
+    </form>
+
+    <!-- Si no hay usuario seleccionado, mostrar mensaje -->
+    <div *ngIf="!selectedUser">
+      <p>Selecciona un usuario para iniciar un chat.</p>
+    </div>
+  </div>
+</div>
